@@ -1,0 +1,8 @@
+#file
+*.o
+Project.*
+
+#path
+Listings/
+Objects/
+
