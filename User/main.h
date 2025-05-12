@@ -1,6 +1,5 @@
 #include "stm32f10x.h"                  // Device header
 #include "LEDSEG.h"
-#include "Delay.h"
 #include "robot.h"
 #include "Incontrol.h"
 #include "Irtracking.h"

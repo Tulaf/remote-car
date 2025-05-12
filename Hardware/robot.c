@@ -1,6 +1,9 @@
 #include "stm32f10x.h"                  // Device header
 #include "PWM.h"
-#include "Delay.h"
+
+#include "freertos.h"
+#include "task.h"
+
 // 机器人初始化
 void robot_Init(void)
 {
@@ -29,14 +32,14 @@ void makerobo_run(int8_t speed,uint16_t time)  //前进函数
 	}
 
 	robot_speed(speed,0,speed,0);
-	Delay_ms(time);                 // 时间为毫秒
+	vTaskDelay(time);                 // 时间为毫秒
 	//robot_speed(0,0,0,0);           // 机器人停止
 }
 
 void makerobo_brake(uint16_t time) //刹车函数
 {
 	robot_speed(0,0,0,0);     // 电机停止 
-	Delay_ms(time);          // 时间为毫秒   
+	vTaskDelay(time);          // 时间为毫秒   
 }
 
 void makerobo_Left(int8_t speed,uint16_t time) //左转函数
@@ -50,7 +53,7 @@ void makerobo_Left(int8_t speed,uint16_t time) //左转函数
 		speed = 0;
 	}
 	robot_speed(0,0,speed,0);
-	Delay_ms(time);                 //时间为毫秒  
+	vTaskDelay(time);                 //时间为毫秒  
 	//robot_speed(0,0,0,0);           // 机器人停止
 
 }
@@ -66,7 +69,7 @@ void makerobo_Spin_Left(int8_t speed,uint16_t time) //左旋转函数
 		speed = 0;
 	}  
 	robot_speed(0,speed,speed,0);
-	Delay_ms(time);                    //时间为毫秒 
+	vTaskDelay(time);                    //时间为毫秒 
 	//robot_speed(0,0,0,0);           // 机器人停止			
 }
 
@@ -81,7 +84,7 @@ void makerobo_Right(int8_t speed,uint16_t time) //右转函数
 		speed = 0;
 	}
 	robot_speed(speed,0,0,0);
-	Delay_ms(time);                 //时间为毫秒  
+	vTaskDelay(time);                 //时间为毫秒  
 	//robot_speed(0,0,0,0);           // 机器人停止
 
 }
@@ -97,7 +100,7 @@ void makerobo_Spin_Right(int8_t speed,uint16_t time) //右旋转函数
 		speed = 0;
 	}  
 	robot_speed(speed,0,0,speed);
-	Delay_ms(time);                    //时间为毫秒 
+	vTaskDelay(time);                    //时间为毫秒 
 	//robot_speed(0,0,0,0);           // 机器人停止			
 }
 
@@ -112,7 +115,7 @@ void makerobo_back(int8_t speed,uint16_t time)  //后退函数
 		speed = 0;
 	}
 	robot_speed(0,speed,0,speed);
-	Delay_ms(time);                 // 时间为毫秒
+	vTaskDelay(time);                 // 时间为毫秒
 	//robot_speed(0,0,0,0);           // 机器人停止
  
 }

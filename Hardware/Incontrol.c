@@ -1,5 +1,7 @@
 #include "stm32f10x.h"                  // Device header
-#include "Delay.h"
+
+#include "freertos.h"
+#include "task.h"
 
 //端口定义
 #define IRED_PORT 			GPIOA  
@@ -59,7 +61,7 @@ uint8_t IRremote_Counttime()
 	while(GPIO_ReadInputDataBit(IRED_PORT,IRED_PIN)==1)//高电平
 	{
 		t++;
-		Delay_us(20);
+		vTaskDelay(20);
 		if(t>=250) return t;//超时溢出
 	}
 	return t;

@@ -1,5 +1,6 @@
 #include "stm32f10x.h"                  // Device header
-#include "Delay.h"
+#include "freertos.h"
+#include "task.h"
 
 void Key_Init(void)
 {
@@ -17,9 +18,9 @@ uint8_t Key_GetNum(void)
 	uint8_t KeyNum = 0;
 	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0)
 	{
-		Delay_ms(20);
+		vTaskDelay(20);
 		while (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0);
-		Delay_ms(20);
+		vTaskDelay(20);
 		KeyNum = 1;
 	}
 	return KeyNum;

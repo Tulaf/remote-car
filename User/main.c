@@ -41,7 +41,6 @@ void key_control(void *arg)
 void mode_switch(void * arg)
 {
 	while (1) {
-		xSemaphoreTake(mode_mutex, portMAX_DELAY);
 		switch(mode) {
 			case 1: 
 				Robot_Traction();
@@ -64,7 +63,6 @@ void mode_switch(void * arg)
 				printf("mode_switch - Default case\r\n");
 			break;
 		}
-		xSemaphoreGive(mode_mutex);
 
 		vTaskDelay(pdMS_TO_TICKS(20));
 		printf("mode_switch - Delayed\r\n");
