@@ -7,6 +7,8 @@
 #include "Key.h"
 #include "Serial.h"
 
+#include "debug.h"
+
 void Irscan(void);
 void ControlCar_Ircontrol(void);
 void Robot_Traction(void);
